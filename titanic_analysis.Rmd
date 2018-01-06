@@ -1,0 +1,27 @@
+---
+title: "Untitled"
+author: "C. McBride"
+date: "January 5, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# packages
+library(ggplot)
+# load training data
+train <- read.csv("c:/users/conner/kaggle/titanic/train.csv", stringsAsFactors = F)
+test <- read.csv("c:/users/conner/kaggle/titanic/test.csv", stringsAsFactors = F)
+test$Survived <- -1
+full <- rbind(train, test)
+
+apply(train, 2, function(x)sum(is.na(x)))
+table(full$Fare, full$Pclass)
+plot(train$Fare, col=train$Pclass, pch=train$Survived)
+legend(0, 500, legend=c("1st", "2nd", "3rd"), fill=c("black", "red", "green3"))
+table(full$Pclass)
+```
+
